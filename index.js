@@ -32,7 +32,7 @@ client.connect(err => {
         collection.find({})
             .toArray((err, documents) => {
                 res.send(documents);
-                console.log(documents)
+              //  console.log(documents)
             })
 
     });
@@ -55,7 +55,7 @@ client.connect(err => {
                 size: req.files.file.size,
                 img: Buffer(enImg, 'base64')
             }
-            console.log(name, email, image);
+         //   console.log(name, email, image);
             doctor.insertOne({ Name: name, Email: email, Img: image })
                 .then(result => {
                     //  fs.remove(filePath, error => {
@@ -64,7 +64,7 @@ client.connect(err => {
 
                     //    }
                     res.send("upload a file");
-                    console.log("upload a file")
+                 //   console.log("upload a file")
                     //   })
 
                 })
@@ -87,13 +87,13 @@ client.connect(err => {
         doctor.find({ Email: email })
             .toArray((err, documents) => {
                 res.send(documents);
-                console.log(email, documents);
+             //  console.log(email, documents);
             })
     })
     app.post('/appointmentsByDate', (req, res) => {
         const date = req.body;
         const email = req.body.email;
-        console.log(email);
+      // console.log(email);
 
         doctor.find({ Email: email })
             .toArray((err, documets) => {
@@ -101,7 +101,7 @@ client.connect(err => {
                     collection.find({ Email: email })
                         .toArray((err, info) => {
                             res.send(info)
-                            console.log(info)
+                        //    console.log(info)
                         })
                 }
                 else {
