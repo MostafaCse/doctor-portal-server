@@ -11,7 +11,9 @@ app.use(cors());
 app.use(fileupload());
 app.use(express.static('doctors'));
 
-
+app.get('/',(req,res)=>{
+    res.send("hello db is working now");
+})
 const uri = "mongodb+srv://GolamMostafa:iiuccse42@cluster0.f4pfg.mongodb.net/doctorPortal?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
@@ -130,7 +132,5 @@ client.connect(err => {
 }
 )
 
-app.listen(5000, () => {
-    console.log("database is conncet");
-})
+app.listen(process.env.PORT)
 
