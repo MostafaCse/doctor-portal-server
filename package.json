@@ -1,15 +1,8 @@
 {
-  "name": "server",
+  "name": "doctor-portal-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start":"node index.js",
-    "start:dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -17,9 +10,23 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "fs-extra": "^10.0.0",
-    "mongodb": "^4.1.0"
-  },
-  "devDependencies": {
+    "mongodb": "^4.1.0",
     "nodemon": "^2.0.12"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start:dev":"nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MostafaCse/doctor-portal-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MostafaCse/doctor-portal-server/issues"
+  },
+  "homepage": "https://github.com/MostafaCse/doctor-portal-server#readme"
 }
