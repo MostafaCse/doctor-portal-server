@@ -25,13 +25,12 @@ client.connect(err => {
 
   app.post('/addAppointment', (req, res) => {
     const appointment = req.body;
-    console.log(appointment);
     collection.insertOne(appointment)
         .then(result => {
             res.send(true);
         })
         .catch(err => {
-            console.log(err);
+           res.send(err);
         })
 });
 
@@ -39,7 +38,6 @@ app.get('/allPatients', (req, res) => {
     collection.find({})
         .toArray((err, documents) => {
             res.send(documents);
-          //  console.log(documents)
         })
 
 });
@@ -48,13 +46,11 @@ app.post('/addDoctors', (req, res) => {
     const file = req.files.file;
     const name = req.body.name;
     const email = req.body.email;
-    console.log(name, email, file);
     const filePath = `${__dirname}/doctors/${file.name}`;
 
     file.mv(filePath, err => {
         if (err) {
             return res.status(500).send(err);
-            console.log(err);
         }
         const newImg = fs.readFileSync(filePath);
         const enImg = newImg.toString('base64');
@@ -63,22 +59,9 @@ app.post('/addDoctors', (req, res) => {
             size: req.files.file.size,
             img: Buffer(enImg, 'base64')
         }
-     //   console.log(name, email, image);
         doctor.insertOne({ Name: name, Email: email, Img: image })
-            .then(result => {
-                //  fs.remove(filePath, error => {
-                //      if (error) {
-                ////        console.log(error);
-
-                //    }
-                res.send("upload a file");
-             //   console.log("upload a file")
-                //   })
-
-            })
-        // res.send('File uploaded!');
+            .then(result => {res.send("upload a file")})
     }
-
     );
 });
 
@@ -87,7 +70,6 @@ app.get('/doctorsFound', (req, res) => {
     doctor.find({})
         .toArray((err, info) => {
             res.send(info);
-              console.log(info);
         })
 })
 
@@ -96,7 +78,6 @@ app.post('/isDoctor', (req, res) => {
     doctor.find({ Email: email })
         .toArray((err, documents) => {
             res.send(documents);
-         //  console.log(email, documents);
         })
 })
 
@@ -109,7 +90,6 @@ app.post('/appointmentsByDate', (req, res) => {
                 collection.find({ Email: email })
                     .toArray((err, info) => {
                         res.send(info)
-                    //    console.log(info)
                     })
             }
             else {
@@ -122,10 +102,7 @@ app.post('/appointmentsByDate', (req, res) => {
         })
 
 })
-
- // client.close();
 });
-
 
 app.listen(process.env.PORT || port);
 
